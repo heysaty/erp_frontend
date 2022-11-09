@@ -1,10 +1,50 @@
 import React, { useEffect, useState } from 'react'
 import { Table } from 'react-bootstrap'
 import Navbar from './Navbar'
+import axios from "axios";
+
 
 function LeaveTable() {
 
+
+   
     const [list, setList] = useState([]);
+    var url;
+
+    const  handleapprove =(id)=> {
+    
+      url= 'http://127.0.0.1:8000/leaves/approve/'+ id
+      axios.put(url);
+      alert("Leave Approved")
+      window.location.reload();
+          // .then(response => this.setState({ updatedAt: response.data.updatedAt }));
+      
+      
+  
+   
+      // navigate('/leaves');
+      // alert("Logout Successfull")
+  
+    }
+
+
+    const  handlereject=(id)=> {
+
+      url= 'http://127.0.0.1:8000/leaves/reject/'+ id
+      axios.put(url);
+      alert("Leave Rejected")
+      window.location.reload();
+          // .then(response => this.setState({ updatedAt: response.data.updatedAt }));
+
+
+   
+      // navigate('/leaves');
+      // alert("Logout Successfull")
+  
+    }
+  
+  
+
 
     useEffect(() => {
 
@@ -14,11 +54,10 @@ function LeaveTable() {
     },[])
     console.log('feteching')
     console.log(list)
-
-
-
        const DisplayData=list.map(
         (info)=>{
+            // console.log(info)
+
             return(
                 <tr>
                     <td>{info.id}</td>
@@ -26,7 +65,12 @@ function LeaveTable() {
                     <td>{info.leave_type}</td>
                     <td>{info.date}</td>
                     <td>{info.user_id}</td>
+                    <td>
 
+                       {/* dont call onclick directly it calls infinite times */}
+                      <button onClick={()=>{handleapprove(info.id)}} >Approve</button>
+                      <button onClick={()=>{handlereject(info.id)}} >Reject</button>
+                    </td>
                 </tr>
             )
         }
@@ -44,11 +88,14 @@ function LeaveTable() {
           <th>Leave Type</th>
           <th>Date</th>
           <th>user id</th>
+          <th>Action</th>
+
         </tr>
       </thead>
       <tbody>
         
         {DisplayData}
+        
 
       </tbody>
     </Table>
