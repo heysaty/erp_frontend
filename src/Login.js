@@ -1,7 +1,9 @@
+import React from 'react';
 import { useNavigate } from "react-router-dom";
 // import { fetchToken, setToken } from "./Auth";
 import { useState } from "react";
 import axios from "axios";
+// import { Auth } from "./Auth";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -17,7 +19,7 @@ export default function Login() {
     } else {
       // make api call to our backend. we'll leave thisfor later
       axios
-        .post("http://127.0.0.1:8000/login", {
+        .post("https://erp-saty.herokuapp.com/login", {
           email: email,
           password: password,
         })
@@ -27,6 +29,7 @@ export default function Login() {
           const token = response.data.access_token
           if (token) {
             localStorage.setItem('access_token',token)
+
             // setToken(response.data.access_token);
 //            navigate("/profile");
             navigate("home");

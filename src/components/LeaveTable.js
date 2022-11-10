@@ -13,7 +13,7 @@ function LeaveTable() {
 
     const  handleapprove =(id)=> {
     
-      url= 'http://127.0.0.1:8000/leaves/approve/'+ id
+      url= 'https://erp-saty.herokuapp.com/leaves/approve/'+ id
       axios.put(url);
       alert("Leave Approved")
       window.location.reload();
@@ -30,7 +30,7 @@ function LeaveTable() {
 
     const  handlereject=(id)=> {
 
-      url= 'http://127.0.0.1:8000/leaves/reject/'+ id
+      url= 'https://erp-saty.herokuapp.com/leaves/reject/'+ id
       axios.put(url);
       alert("Leave Rejected")
       window.location.reload();
@@ -48,7 +48,7 @@ function LeaveTable() {
 
     useEffect(() => {
 
-        fetch("http://localhost:8000/leaves")
+        fetch("https://erp-saty.herokuapp.com/leaves")
         .then(response => response.json())
         .then(data => setList(data))
     },[])

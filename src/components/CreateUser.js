@@ -22,7 +22,7 @@ export default function CreateUser() {
       return ;
     } else {
       axios
-        .post('http://127.0.0.1:8000/signup', {
+        .post('https://erp-saty.herokuapp.com/signup', {
           email:email,
           password:password,
           first_name:first_name,
