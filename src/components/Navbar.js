@@ -37,7 +37,8 @@ function ColorSchemesExample() {
               return <Link to="/signup"><Navbar.Brand >Create Account</Navbar.Brand></Link>
           } */}
           {(() => {
-              if (Auth().role==='admin'){
+                  console.log(Auth())
+              if (Auth() != null && Auth().role==='admin'){
                   return (
                     <Link to="/signup"><Navbar.Brand >Create Account</Navbar.Brand></Link>
                   )
@@ -60,6 +61,8 @@ function ColorSchemesExample() {
 
 
   );
+
+  
 }
 
 export default ColorSchemesExample;

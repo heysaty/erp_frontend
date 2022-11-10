@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Navbar from './Navbar'
-
+import Auth from '../Auth';
 
 export default function Leaves(){
     const navigate = useNavigate();
@@ -33,54 +33,62 @@ const leaves = () => {
             });
         }
     };
+    
+    if (Auth()==null) {
+        navigate('/')
+        return alert('Login Required !!!')
+    
+      }
+      else{
 
-    return (
-        <>
-        <Navbar />
-        <div style={{ minHeight: 800, marginTop: 30 }}>
-        <h1>Request Leave</h1>
-        <div style={{ marginTop: 30 }}>
-          
-            <div>
-              <form>
-                <label style={{ marginRight: 45 }}>Leave Date</label>
-               
-  
-                <input
-                  type="text"
-                  onChange={(e) => setleave_date(e.target.value)}
-                  placeholder="YYYY-MM-DD"
-                  required
-                />
-                 <div>
-                </div>
-  
-  
-                <label style={{ marginRight: 45 }}>Leave Type</label>
-                <input
-                  type="text"
-                  onChange={(e) => setleave_type(e.target.value)}
-                  placeholder=""
-                  required
-                />
-                 <div>
-                </div>
-  
-  
+                return (
+                    <>
+                    <Navbar />
+                    <div style={{ minHeight: 800, marginTop: 30 }}>
+                    <h1>Request Leave</h1>
+                    <div style={{ marginTop: 30 }}>
+                    
+                        <div>
+                        <form>
+                            <label style={{ marginRight: 45 }}>Leave Date</label>
+                        
             
-               
-  
-                <button type="button" onClick={leaves}>
-                  Submit
-                </button>
-              </form>
-            </div>
-          
-        </div>
-      </div>
-      </>
-  
-      )
+                            <input
+                            type="text"
+                            onChange={(e) => setleave_date(e.target.value)}
+                            placeholder="YYYY-MM-DD"
+                            required
+                            />
+                            <div>
+                            </div>
+            
+            
+                            <label style={{ marginRight: 45 }}>Leave Type</label>
+                            <input
+                            type="text"
+                            onChange={(e) => setleave_type(e.target.value)}
+                            placeholder=""
+                            required
+                            />
+                            <div>
+                            </div>
+            
+            
+                        
+                        
+            
+                            <button type="button" onClick={leaves}>
+                            Submit
+                            </button>
+                        </form>
+                        </div>
+                    
+                    </div>
+                </div>
+                </>
+            
+                );
+      }
 
 
 }

@@ -3,9 +3,13 @@ import { Table } from 'react-bootstrap'
 import Navbar from './Navbar'
 import axios from "axios";
 import Auth from '../Auth';
+import { useNavigate } from "react-router";
+
+
 
 function LeaveTable() {
 
+    const navigate = useNavigate();
 
    
     const [list, setList] = useState([]);
@@ -90,46 +94,55 @@ function LeaveTable() {
             )
         }
     )
-  return (
-    <>
-     <Navbar />
-
-    <div>
-        <Table striped bordered hover variant="dark">
-      <thead>
-        <tr>
-          {/* <th>id</th> */}
-          <th>Date</th>
-          <th>Leave Status</th>
-          <th>Leave Type</th>
-          
-          <th>user id</th>
-          {(() => {
-                    if (Auth().role==='admin'){
-                        return (
-                          <th>Action</th>  
-                        )
-                    }
-                    
-                    return null;
-                    })()}
 
 
+    if (Auth()==null) {
+      navigate('/')
+      return alert('Login Required !!!')
+  
+    }
+    else{
+        return (
+          <>
+          <Navbar />
 
-      
+          <div>
+              <Table striped bordered hover variant="dark">
+            <thead>
+              <tr>
+                {/* <th>id</th> */}
+                <th>Date</th>
+                <th>Leave Status</th>
+                <th>Leave Type</th>
+                
+                <th>user id</th>
+                {(() => {
+                          if (Auth().role==='admin'){
+                              return (
+                                <th>Action</th>  
+                              )
+                          }
+                          
+                          return null;
+                          })()}
 
-        </tr>
-      </thead>
-      <tbody>
-        
-        {DisplayData}
-        
 
-      </tbody>
-    </Table>
-    </div>
-    </>
-  )
+
+            
+
+              </tr>
+            </thead>
+            <tbody>
+              
+              {DisplayData}
+              
+
+            </tbody>
+          </Table>
+          </div>
+          </>
+        );
+                        }
 }
 
 export default LeaveTable
