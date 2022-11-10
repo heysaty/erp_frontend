@@ -1,14 +1,15 @@
-// import React from 'react'
-// import jwt from 'jwt-decode'
+import React from 'react'
+import {  decodeToken } from "react-jwt";
 
-// export const Auth = () => {
-//     var token = localStorage.getItem('access_token')
-//     var decoded = jwt(token);
 
-//     console.log(decoded)
+export default function Auth(){
 
 
 
-//   return 
-//   decoded
-// }
+    const token= localStorage.getItem('access_token');
+
+    const decoded = decodeToken(token)
+
+
+  return decoded;
+}
