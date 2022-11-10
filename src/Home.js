@@ -13,7 +13,7 @@ export default function Home() {
         <p>Hello there, welcome to your Home page</p> */}
 
 <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '20vh'}}>
-    <h1> Hello there, welcome to your Home page !</h1>
+    <h1> Hello there, Welcome to your Home page !</h1>
 </div>
 
       

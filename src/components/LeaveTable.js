@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Table } from 'react-bootstrap'
 import Navbar from './Navbar'
 import axios from "axios";
-
+import Auth from '../Auth';
 
 function LeaveTable() {
 
@@ -60,17 +60,32 @@ function LeaveTable() {
 
             return(
                 <tr>
-                    <td>{info.id}</td>
+                    {/* <td>{info.id}</td> */}
+                    <td>{info.date}</td>
                     <td>{info.leave_status}</td>
                     <td>{info.leave_type}</td>
-                    <td>{info.date}</td>
+                    
                     <td>{info.user_id}</td>
-                    <td>
+                    {(() => {
+                    if (Auth().role==='admin'){
+                        return (
 
-                       {/* dont call onclick directly it calls infinite times */}
-                      <button onClick={()=>{handleapprove(info.id)}} >Approve</button>
-                      <button onClick={()=>{handlereject(info.id)}} >Reject</button>
-                    </td>
+
+                          <td>
+                          {/* dont call onclick directly it calls infinite times */}
+                          <button onClick={()=>{handleapprove(info.id)}} >Approve</button>
+                          <button onClick={()=>{handlereject(info.id)}} >Reject</button>
+                          </td>
+                          
+                        )
+                    }
+                    
+                    return null;
+                    })()}
+                
+
+
+                    
                 </tr>
             )
         }
@@ -83,12 +98,25 @@ function LeaveTable() {
         <Table striped bordered hover variant="dark">
       <thead>
         <tr>
-          <th>id</th>
+          {/* <th>id</th> */}
+          <th>Date</th>
           <th>Leave Status</th>
           <th>Leave Type</th>
-          <th>Date</th>
+          
           <th>user id</th>
-          <th>Action</th>
+          {(() => {
+                    if (Auth().role==='admin'){
+                        return (
+                          <th>Action</th>  
+                        )
+                    }
+                    
+                    return null;
+                    })()}
+
+
+
+      
 
         </tr>
       </thead>
