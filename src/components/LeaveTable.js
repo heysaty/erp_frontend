@@ -60,7 +60,8 @@ function LeaveTable() {
     console.log(list)
        const DisplayData=list.map(
         (info)=>{
-            // console.log(info)
+            console.log(info)
+            // console.log(info.leave_user)
 
             return(
                 <tr>
@@ -69,7 +70,7 @@ function LeaveTable() {
                     <td>{info.leave_status}</td>
                     <td>{info.leave_type}</td>
                     
-                    <td>{info.user_id}</td>
+                    <td>{info.name.first_name}</td>
                     {(() => {
                     if (Auth().role==='admin'){
                         return (
@@ -114,11 +115,11 @@ function LeaveTable() {
                 <th>Date</th>
                 <th>Leave Status</th>
                 <th>Leave Type</th>
-                
-                <th>user id</th>
+                <th>Name</th>
                 {(() => {
                           if (Auth().role==='admin'){
                               return (
+                                
                                 <th>Action</th>  
                               )
                           }
